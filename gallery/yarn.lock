@@ -237,6 +237,11 @@
     "@types/prop-types" "*"
     csstype "^2.2.0"
 
+"@types/webpack-env@^1.15.2":
+  version "1.15.2"
+  resolved "https://repo.sonatype.com/repository/npm-all/@types/webpack-env/-/webpack-env-1.15.2.tgz#927997342bb9f4a5185a86e6579a0a18afc33b0a"
+  integrity sha512-67ZgZpAlhIICIdfQrB5fnDvaKFcDxpKibxznfYRVAT4mQE41Dido/3Ty+E3xGBmTogc5+0Qb8tWhna+5B8z1iQ==
+
 "@typescript-eslint/eslint-plugin@1.11.0":
   version "1.11.0"
   resolved "https://registry.npmjs.org/@typescript-eslint/eslint-plugin/-/eslint-plugin-1.11.0.tgz#870f752c520db04db6d3668af7479026a6f2fb9a"

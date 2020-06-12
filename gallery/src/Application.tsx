@@ -14,6 +14,7 @@ import pageConfig from './pageConfig';
 import PageHeader from './PageHeader';
 import GalleryNav from './GalleryNav';
 import Home from './pages/Home';
+import VisualTestPage from './VisualTestPage';
 
 const pageMappings: PageMapping = mergeAll(values(pageConfig));
 
@@ -44,17 +45,24 @@ function renderPage({ match }: RouteChildrenProps<{ pageName: string }>) {
 function Application() {
   return (
     <Router>
-      <PageHeader />
-      <div className="nx-page-content">
-        <aside className="nx-page-sidebar" id="gallery-sidebar">
-          <GalleryNav />
-        </aside>
-        <Switch>
-          <Route path="/pages/:pageName" render={renderPage} />
-          <Route exact path="/" render={renderPage} />
-          <Redirect to="/" />
-        </Switch>
-      </div>
+      <Switch>
+        <Route exact path="/visual-test">
+          <VisualTestPage />
+        </Route>
+        <Route>
+          <PageHeader />
+          <div className="nx-page-content">
+            <aside className="nx-page-sidebar" id="gallery-sidebar">
+              <GalleryNav />
+            </aside>
+            <Switch>
+              <Route path="/pages/:pageName" render={renderPage} />
+              <Route exact path="/" render={renderPage} />
+              <Redirect to="/" />
+            </Switch>
+          </div>
+        </Route>
+      </Switch>
     </Router>
   );
 }
