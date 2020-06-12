@@ -6,6 +6,7 @@
  */
 import React, { JSXElementConstructor } from 'react';
 
+// Pull in every *Example file in the gallery
 const examplesContext = require.context('.', true, /(pages|components|guidelines|styles)\/.*Example.tsx$/),
     examples: JSXElementConstructor<any>[] = examplesContext.keys().map(
         (name: string) => examplesContext(name).default);
