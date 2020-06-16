@@ -30,6 +30,8 @@ $nx-dropdown-width: 250px;
   }
 
   .nx-icon {
+    // necessary because the icon is included bare in the flex layout. If it had a wrapping div the line-height
+    // would cause that div to the be same height as the text label and all would be well
     align-self: center;
     color: #000000;
   }
