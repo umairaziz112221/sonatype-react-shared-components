@@ -7,11 +7,8 @@
 import { LiHTMLAttributes } from 'react';
 import PropTypes from 'prop-types';
 
-export type Props = LiHTMLAttributes<HTMLLIElement> & {
-  index?: number | null;
-};
+export type Props = LiHTMLAttributes<HTMLLIElement>;
 
 export const propTypes: PropTypes.ValidationMap<Props> = {
-  index: PropTypes.number,
   children: PropTypes.node
 };

@@ -19,11 +19,11 @@ import { Props, propTypes } from './types';
  * * The NxTabPanel must have a labelledBy prop that matches the id of an NxTab.
  */
 const NxStatefulTabs = function NxStatefulTabsElement(props: Props) {
-  const { defaultActiveTab = 0, children, onTabSelect, ...attrs } = props;
+  const { defaultActiveTab, children, onTabSelect, ...attrs } = props;
 
-  const [activeTab, setActiveTab] = useState<number | null | undefined>(defaultActiveTab);
+  const [activeTab, setActiveTab] = useState<number>(defaultActiveTab || 0);
 
-  function handleTabSelect(index: number | null | undefined) {
+  function handleTabSelect(index: number) {
     if (onTabSelect) {
       onTabSelect(index);
     }

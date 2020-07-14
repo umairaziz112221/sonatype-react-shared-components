@@ -14,11 +14,14 @@ import { Props, propTypes } from './types';
 export { Props } from './types';
 
 interface ActiveTabContextType {
-  activeTab: number | null | undefined;
-  onTabSelect: (index: number | null | undefined) => void;
+  activeTab: number;
+  onTabSelect: (index: number) => void;
 };
 
-export const ActiveTabContext = React.createContext<ActiveTabContextType>({activeTab: null, onTabSelect: () => {}});
+type IndexContextType = number;
+
+export const ActiveTabContext = React.createContext<ActiveTabContextType>({activeTab: 0, onTabSelect: () => {}});
+export const IndexContext = React.createContext<IndexContextType>(0);
 
 let tabId = 0;
 
@@ -26,7 +29,7 @@ const NxTabs = function NxTabsElement(props: Props) {
   const {activeTab, onTabSelect, id, className, children, ...attrs} = props;
 
   const activeTabContext: ActiveTabContextType = {
-    activeTab,
+    activeTab: activeTab || 0,
     onTabSelect: onTabSelect || (() => {})
   };
 
@@ -46,11 +49,14 @@ const NxTabs = function NxTabsElement(props: Props) {
   const clonedTabList = cloneElement(tabList, {
     children: Children.toArray(tabList.props.children).map((tab, index) => {
       if (isValidElement<NxTabProps>(tab)) {
-        return cloneElement(tab, {
-          id: `${rootId}-tab-${index}`,
-          'aria-controls': `${rootId}-tab-panel-${index}`,
-          index
-        });
+        return (
+          <IndexContext.Provider value={index} key={index}>
+            {cloneElement(tab, {
+              id: `${rootId}-tab-${index}`,
+              'aria-controls': `${rootId}-tab-panel-${index}`
+            })}
+          </IndexContext.Provider>
+        );
       }
       return tab;
     })

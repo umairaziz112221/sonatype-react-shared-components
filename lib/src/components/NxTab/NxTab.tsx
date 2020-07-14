@@ -7,7 +7,7 @@
 import React from 'react';
 import classnames from 'classnames';
 
-import { ActiveTabContext } from '../NxTabs/NxTabs';
+import { ActiveTabContext, IndexContext } from '../NxTabs/NxTabs';
 
 import { Props, propTypes } from './types';
 export { Props } from './types';
@@ -17,7 +17,8 @@ import './NxTab.scss';
 const NxTab = function NxTabElement(props: Props) {
   // Use React.useContext instead of importing useContext for jest to mock the value in the test
   const {activeTab, onTabSelect} = React.useContext(ActiveTabContext);
-  const {id, index, tabIndex = 0, className, onClick, onKeyPress, ...attrs} = props;
+  const index = React.useContext(IndexContext);
+  const {id, tabIndex = 0, className, onClick, onKeyPress, ...attrs} = props;
   const active = activeTab === index;
   const classNames = classnames('nx-tab', className, { active });
   const selected = active ? 'true' : 'false';
